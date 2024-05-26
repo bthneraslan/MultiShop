@@ -14,7 +14,8 @@ namespace MultiShop.IndetityServer
         {
             new ApiResource("ResourceCatalog"){ Scopes= {"CatalogFullPermission","CatalogReadPermission"} },
             new ApiResource("ResourceDiscount"){ Scopes= {"DiscountFullPermission" } },
-            new ApiResource("ResourceOrder"){ Scopes= {"OrderFullPermission" } }
+            new ApiResource("ResourceOrder"){ Scopes= {"OrderFullPermission" } },
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
@@ -30,6 +31,7 @@ namespace MultiShop.IndetityServer
             new ApiScope("CatalogReadPermission","Reading authority for catalog operations"),
             new ApiScope("DiscountFullPermission","Full authority for catalog operations"),
             new ApiScope("OrderFullPermission","Full authority for catalog operations"),
+            new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<Client> Clients => new Client[]
@@ -41,7 +43,7 @@ namespace MultiShop.IndetityServer
                 ClientName = "Multi Shop Visitor User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = {new Secret("multishopsecret".Sha256())},
-                AllowedScopes ={"CatalogReadPermission"}
+                AllowedScopes ={ "DiscountFullPermission" }
             },
             //Manager
             new Client
@@ -59,7 +61,8 @@ namespace MultiShop.IndetityServer
                 ClientName = "Multi Shop Admin User",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = {new Secret("multishopsecret".Sha256())},
-                AllowedScopes ={"CatalogReadPermission", "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission",IdentityServerConstants.LocalApi.ScopeName,
+                AllowedScopes ={"CatalogReadPermission", "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission",
+                    IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServerConstants.StandardScopes.Email,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile
