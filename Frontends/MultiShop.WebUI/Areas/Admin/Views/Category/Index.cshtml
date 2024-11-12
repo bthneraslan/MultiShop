@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MultiShop.DtoLayer.CatalogDtos.CategoryDtos
+@model List<ResultCategoryDto>
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
@@ -20,13 +22,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-
-                                <th scope="row">@count</th>
-                                <td>test</td>
-                                <td><a href="/Admin/Category/DeleteCategory/test" class="btn btn-danger">Sil</a></td>
-                                <td><a href="/Admin/Category/UpdateCategory/test" class="btn btn-success">Güncelle</a></td>
-                            </tr>
+                            @foreach(ResultCategoryDto item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.CategoryName</td>
+                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
+                                </tr>
+                                count++;
+                            }
 
                         </tbody>
                     </table>
