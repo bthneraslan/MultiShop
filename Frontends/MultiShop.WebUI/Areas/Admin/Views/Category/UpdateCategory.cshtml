@@ -1,6 +1,6 @@
-﻿@model ResultCategoryDto
+﻿@model UpdateCategoryDto
 @{
-    ViewData["Title"] = "CreateCategory";
+    ViewData["Title"] = "UpdateCategory";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
@@ -11,10 +11,11 @@
             <div class="chart-box">
                 <div class="bs-example" data-example-id="bordered-table">
                     <form method="post">
+                        <input type="hidden" asp-for="CategoryId" />
                         <label>Kategori Adı</label>
-                        <input type="text" class="form-control" asp-for="CategoryName"/>
+                        <input type="text" class="form-control" asp-for="CategoryName" />
                         <br />
-                        <button class="btn btn-primary">Kategori Ekle</button>
+                        <button class="btn btn-primary">Kategori Güncelle</button>
                     </form>
                 </div>
             </div>
