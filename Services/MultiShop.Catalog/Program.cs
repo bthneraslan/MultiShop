@@ -9,6 +9,9 @@ using MultiShop.Catalog.Services.SpecialOfferServices;
 using MultiShop.Catalog.Services.FeatureServices;
 using MultiShop.Catalog.Settings;
 using System.Reflection;
+using MultiShop.Catalog.Services.OfferDiscountServices;
+using MultiShop.Catalog.Entities;
+using MultiShop.Catalog.Services.BrandServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,8 @@ builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IFeatureSliderServices, FeatureSliderServices>();
 builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IFeatureServices, FeatureService>();
+builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddScoped<IDatabaseSettings>(sp =>
