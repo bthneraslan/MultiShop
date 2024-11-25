@@ -7,10 +7,10 @@ namespace MultiShop.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductImageImagesController : ControllerBase
+    public class ProductImagesController : ControllerBase
     {
         private readonly IProductImageService _productImageService;
-        public ProductImageImagesController(IProductImageService productImageServices)
+        public ProductImagesController(IProductImageService productImageServices)
         {
             _productImageService = productImageServices;
         }
@@ -19,6 +19,12 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> ProductImageList()
         {
             var values = await _productImageService.GetAllProductImageAsync();
+            return Ok(values);
+        }
+        [HttpGet("ProductImagesByProductId")]
+        public async Task<IActionResult> ProductImagesByProductId(string id)
+        {
+            var values = await _productImageService.GetByProductIdProductImageAsync(id);
             return Ok(values);
         }
         [HttpGet("id")]
