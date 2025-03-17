@@ -8,9 +8,9 @@ on:
     branches: [main]
 
 jobs:
-  # Microservice 1 Job (dotnet 6.0)
-  analyze-microservice1:
-    name: Analyze Microservice 1
+  # MultiShop.Basket Job (dotnet 6.0)
+  analyze-multishop-basket:
+    name: Analyze MultiShop.Basket
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -21,16 +21,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up .NET SDK (Microservice 1 - .NET 6.0)
+      - name: Set up .NET SDK (MultiShop.Basket - .NET 6.0)
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
 
-      - name: Restore dependencies for Microservice 1
-        run: dotnet restore ./Microservice1/Microservice1.csproj
+      - name: Restore dependencies for MultiShop.Basket
+        run: dotnet restore ./services/MultiShop.Basket/MultiShop.Basket.csproj
 
-      - name: Build Microservice 1
-        run: dotnet build ./Microservice1/Microservice1.csproj --configuration Release
+      - name: Build MultiShop.Basket
+        run: dotnet build ./services/MultiShop.Basket/MultiShop.Basket.csproj --configuration Release
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -40,9 +40,9 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
-  # Microservice 2 Job (dotnet 8.0)
-  analyze-microservice2:
-    name: Analyze Microservice 2
+  # MultiShop.Cargo.WebApi Job (dotnet 8.0)
+  analyze-multishop-cargo-webapi:
+    name: Analyze MultiShop.Cargo.WebApi
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -53,16 +53,112 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up .NET SDK (Microservice 2 - .NET 8.0)
+      - name: Set up .NET SDK (MultiShop.Cargo.WebApi - .NET 8.0)
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies for Microservice 2
-        run: dotnet restore ./Microservice2/Microservice2.csproj
+      - name: Restore dependencies for MultiShop.Cargo.WebApi
+        run: dotnet restore ./services/MultiShop.Cargo.WebApi/MultiShop.Cargo.WebApi.csproj
 
-      - name: Build Microservice 2
-        run: dotnet build ./Microservice2/Microservice2.csproj --configuration Release
+      - name: Build MultiShop.Cargo.WebApi
+        run: dotnet build ./services/MultiShop.Cargo.WebApi/MultiShop.Cargo.WebApi.csproj --configuration Release
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # MultiShop.Comment Job (dotnet 6.0)
+  analyze-multishop-comment:
+    name: Analyze MultiShop.Comment
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK (MultiShop.Comment - .NET 6.0)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore dependencies for MultiShop.Comment
+        run: dotnet restore ./services/MultiShop.Comment/MultiShop.Comment.csproj
+
+      - name: Build MultiShop.Comment
+        run: dotnet build ./services/MultiShop.Comment/MultiShop.Comment.csproj --configuration Release
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # MultiShop.Catalog Job (dotnet 8.0)
+  analyze-multishop-catalog:
+    name: Analyze MultiShop.Catalog
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK (MultiShop.Catalog - .NET 8.0)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies for MultiShop.Catalog
+        run: dotnet restore ./services/MultiShop.Catalog/MultiShop.Catalog.csproj
+
+      - name: Build MultiShop.Catalog
+        run: dotnet build ./services/MultiShop.Catalog/MultiShop.Catalog.csproj --configuration Release
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # MultiShop.Discount Job (dotnet 6.0)
+  analyze-multishop-discount:
+    name: Analyze MultiShop.Discount
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK (MultiShop.Discount - .NET 6.0)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore dependencies for MultiShop.Discount
+        run: dotnet restore ./services/MultiShop.Discount/MultiShop.Discount.csproj
+
+      - name: Build MultiShop.Discount
+        run: dotnet build ./services/MultiShop.Discount/MultiShop.Discount.csproj --configuration Release
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
