@@ -1,12 +1,3 @@
-name: "CodeQL Analysis"
-
-on:
-  workflow_dispatch:  # Manuel tetikleme için ekle
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
 jobs:
   analyze:
     name: Analyze
@@ -18,21 +9,32 @@ jobs:
 
     strategy:
       matrix:
-        language: ['csharp']  # Projende farklı diller varsa ekleyebilirsin
+        language: ['csharp']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up .NET SDK
+      - name: Set up .NET SDK (for microservice 1)
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'  # Projende kullanılan .NET sürümünü belirtin.
+          dotnet-version: '6.0.x'  # Microservice 1 için .NET 6.0
 
-      - name: Restore dependencies
+      - name: Restore dependencies (microservice 1)
         run: dotnet restore
 
-      - name: Build the project
+      - name: Build the project (microservice 1)
+        run: dotnet build --configuration Release
+
+      - name: Set up .NET SDK (for microservice 2)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'  # Microservice 2 için .NET 8.0
+
+      - name: Restore dependencies (microservice 2)
+        run: dotnet restore
+
+      - name: Build the project (microservice 2)
         run: dotnet build --configuration Release
 
       - name: Initialize CodeQL
