@@ -1,46 +1,73 @@
+name: "CodeQL Analysis"
+
+on:
+  workflow_dispatch:  # Manuel tetikleme için ekle
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
-  analyze:
-    name: Analyze
+  # Microservice 1 Job (dotnet 6.0)
+  analyze-microservice1:
+    name: Analyze Microservice 1
     runs-on: ubuntu-latest
     permissions:
       security-events: write
       actions: read
       contents: read
 
-    strategy:
-      matrix:
-        language: ['csharp']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK (Microservice 1 - .NET 6.0)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore dependencies for Microservice 1
+        run: dotnet restore ./Microservice1/Microservice1.csproj
+
+      - name: Build Microservice 1
+        run: dotnet build ./Microservice1/Microservice1.csproj --configuration Release
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # Microservice 2 Job (dotnet 8.0)
+  analyze-microservice2:
+    name: Analyze Microservice 2
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up .NET SDK (for microservice 1)
+      - name: Set up .NET SDK (Microservice 2 - .NET 8.0)
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'  # Microservice 1 için .NET 6.0
+          dotnet-version: '8.0.x'
 
-      - name: Restore dependencies (microservice 1)
-        run: dotnet restore
+      - name: Restore dependencies for Microservice 2
+        run: dotnet restore ./Microservice2/Microservice2.csproj
 
-      - name: Build the project (microservice 1)
-        run: dotnet build --configuration Release
-
-      - name: Set up .NET SDK (for microservice 2)
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'  # Microservice 2 için .NET 8.0
-
-      - name: Restore dependencies (microservice 2)
-        run: dotnet restore
-
-      - name: Build the project (microservice 2)
-        run: dotnet build --configuration Release
+      - name: Build Microservice 2
+        run: dotnet build ./Microservice2/Microservice2.csproj --configuration Release
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
+          languages: csharp
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
