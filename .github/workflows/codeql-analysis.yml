@@ -27,7 +27,7 @@ jobs:
       - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'  # Projenizde hangi .NET sürümünü kullanıyorsanız onu belirleyin.
+          dotnet-version: '6.0.x'  # Projende kullanılan .NET sürümünü belirtin.
 
       - name: Restore dependencies
         run: dotnet restore
