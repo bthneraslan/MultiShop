@@ -1,12 +1,12 @@
 name: "CodeQL Analysis"
 
 on:
+  workflow_dispatch:  # Manuel tetikleme için ekle
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: '0 12 * * 1'  # Her Pazartesi çalıştır
+
 
 jobs:
   analyze:
