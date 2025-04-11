@@ -1,10 +1,8 @@
 ﻿@model List<ResultSpecialOfferDto>
-
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
-
 <section class="content container-fluid">
     <div class="row">
 
@@ -21,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (ResultSpecialOfferDto item in Model)
                             {
                                 <tr>
                                     <th scope="row">@item.Title</th>
@@ -29,11 +27,13 @@
                                     <td><a href="/Admin/SpecialOffer/DeleteSpecialOffer/@item.SpecialOfferId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/SpecialOffer/UpdateSpecialOffer/@item.SpecialOfferId" class="btn btn-success">Güncelle</a></td>
                                 </tr>
+
                             }
+
                         </tbody>
                     </table>
-                    <a href="/Admin/SpecialOffer/CreateSpecialOffer/" class="btn btn-primary">Yeni Teklif Girişi</a>
-                </div>
+                    <a href="/Admin/SpecialOffer/CreateSpecialOffer/" class="btn btn-primary">Yeni Özel Teklif Girişi</a>
+                </div>              
             </div>
         </div>
 
@@ -41,4 +41,3 @@
 
     </div>
 </section>
-

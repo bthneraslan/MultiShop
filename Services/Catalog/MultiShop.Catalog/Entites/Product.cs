@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace MultiShop.Catalog.Entites
+namespace MultiShop.Catalog.Entities
 {
     public class Product
     {
@@ -9,13 +9,11 @@ namespace MultiShop.Catalog.Entites
         [BsonRepresentation(BsonType.ObjectId)]
         public string ProductId { get; set; }
         public string ProductName { get; set; }
-        public decimal ProductPrice { get; set; }
+        public string ProductPrice { get; set; }
         public string ProductImageUrl { get; set; }
         public string ProductDescription { get; set; }
-
         [BsonRepresentation(BsonType.ObjectId)]
         public string CategoryId { get; set; }
-
         [BsonIgnore]
         public Category Category { get; set; }
     }

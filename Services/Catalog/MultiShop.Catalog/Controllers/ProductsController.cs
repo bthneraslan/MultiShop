@@ -6,31 +6,29 @@ using MultiShop.Catalog.Services.ProductServices;
 
 namespace MultiShop.Catalog.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService ProductService)
+        public ProductsController(IProductService productServices)
         {
-            _productService = ProductService;
+            _productService = productServices;
         }
 
         [HttpGet]
         public async Task<IActionResult> ProductList()
         {
-            var values = await _productService.GettAllProductAsync();
+            var values = await _productService.GetAllProductAsync();
             return Ok(values);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(string id)
         {
-            var values = await _productService.GetByIdProductAsync(id);
-            return Ok(values);
+            var value = await _productService.GetByIdProductAsync(id);
+            return Ok(value);
         }
-
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
@@ -42,14 +40,14 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> DeleteProduct(string id)
         {
             await _productService.DeleteProductAsync(id);
-            return Ok("Ürün başarıyla silindi");
+            return Ok("Ürün başarılı bir şekilde silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
             await _productService.UpdateProductAsync(updateProductDto);
-            return Ok("Ürün başarıyla güncellendi");
+            return Ok("Ürün başarılı bir şekilde güncellendi.");
         }
 
         [HttpGet("ProductListWithCategory")]
@@ -59,10 +57,10 @@ namespace MultiShop.Catalog.Controllers
             return Ok(values);
         }
 
-        [HttpGet("ProductListWithCategoryByCategoryId/{id}")]
-        public async Task<IActionResult> ProductListWithCategoryByCategoryId(string id)
+        [HttpGet("GetProductsWithCategoryByCategoryId")]
+        public async Task<IActionResult> GetProductsWithCategoryByCategoryId(string id)
         {
-            var values = await _productService.GetProductsWithCategoryByCatetegoryIdAsync(id);
+            var values = await _productService.GetProductsWithCategoryByCategoryIdAsync(id);
             return Ok(values);
         }
     }

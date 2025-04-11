@@ -1,10 +1,8 @@
 ﻿@model UpdateProductDto
-
 @{
     ViewData["Title"] = "UpdateProduct";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
-
 
 <section class="content container-fluid">
     <div class="row">
@@ -27,7 +25,7 @@
                         <input type="text" class="form-control" asp-for="ProductImageUrl" />
                         <br />
                         <label>Ürün Kategorisi</label>
-                        @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.CategoryValues,new {@class="form-control"})
+                        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryValues, new { @class = "form-control" })
                         <br />
                         <label>Ürün Açıklaması</label>
                         <textarea class="form-control" asp-for="ProductDescription" rows="5"></textarea>
