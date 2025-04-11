@@ -9,13 +9,18 @@
 @await Component.InvokeAsync("_HeadUILayoutComponentPartial")
 
 <body>
+
     @await Component.InvokeAsync("_TopbarUILayoutComponentPartial")
+
     @await Component.InvokeAsync("_NavbarUILayoutComponentPartial")
 
-@RenderBody()
+    @await Component.InvokeAsync("_DirectoryAlertUILayoutComponentPartial")
+
+    @RenderBody()
 
     @await Component.InvokeAsync("_FooterUILayoutComponentPartial")
-    @await Component.InvokeAsync("_ScriptUILayoutComponentPartial")
-</body>
 
+    @await Component.InvokeAsync("_ScriptUILayoutComponentPartial")
+
+ </body>
 </html>

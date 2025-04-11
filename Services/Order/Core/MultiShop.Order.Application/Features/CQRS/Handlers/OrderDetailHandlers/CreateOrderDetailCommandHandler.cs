@@ -17,17 +17,16 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
         {
             _repository = repository;
         }
-
-        public async Task Handle(CreateOrderDetailCommand createOrderDetailCommand)
+        public async Task Handle(CreateOrderDetailCommand command)
         {
             await _repository.CreateAsync(new OrderDetail
             {
-                ProductAmount = createOrderDetailCommand.ProductAmount,
-                ProductId = createOrderDetailCommand.ProductId,
-                ProductName = createOrderDetailCommand.ProductName,
-                ProductPrice = createOrderDetailCommand.ProductPrice,
-                ProductTotalPrice = createOrderDetailCommand.ProductTotalPrice,
-                OrderingId = createOrderDetailCommand.OrderingId
+                ProductAmount = command.ProductAmount,
+                OrderingId = command.OrderingId,
+                ProductId = command.ProductId,
+                ProductName = command.ProductName,
+                ProductPrice = command.ProductPrice,
+                ProductTotalPrice = command.ProductTotalPrice
             });
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MultiShop.Basket.Dtos;
 using MultiShop.Basket.LoginServices;
 using MultiShop.Basket.Services;
+using System.Security.Claims;
 
 namespace MultiShop.Basket.Controllers
 {
@@ -32,8 +33,9 @@ namespace MultiShop.Basket.Controllers
         {
             basketTotalDto.UserId = _loginService.GetUserId;
             await _basketService.SaveBasket(basketTotalDto);
-            return Ok("Sepetteki değişiklikler başarıyla gerçekleştirildi.");
+            return Ok("Sepetteki değişiklikler kaydedili");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteBasket()
         {

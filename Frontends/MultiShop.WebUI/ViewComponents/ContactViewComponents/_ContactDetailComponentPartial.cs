@@ -2,7 +2,7 @@
 
 namespace MultiShop.WebUI.ViewComponents.ContactViewComponents
 {
-    public class _ContactDetailComponentPartial:ViewComponent
+    public class _ContactDetailComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

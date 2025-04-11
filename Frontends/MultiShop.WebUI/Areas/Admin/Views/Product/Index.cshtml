@@ -1,4 +1,5 @@
 ﻿@model List<ResultProductDto>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -7,7 +8,6 @@
 
 <section class="content container-fluid">
     <div class="row">
-
         <div class="col-md-12">
             <div class="chart-box">
                 <div class="bs-example" data-example-id="bordered-table">
@@ -22,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (ResultProductDto item in Model)
+                            @foreach (var item in Model)
                             {
                                 count++;
                                 <tr>
@@ -32,17 +32,12 @@
                                     <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
                                 </tr>
-
                             }
-
                         </tbody>
                     </table>
                     <a href="/Admin/Product/CreateProduct/" class="btn btn-primary">Yeni Ürün Girişi</a>
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </section>

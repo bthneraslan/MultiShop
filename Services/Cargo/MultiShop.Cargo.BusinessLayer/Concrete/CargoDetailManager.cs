@@ -22,7 +22,7 @@ namespace MultiShop.Cargo.BusinessLayer.Concrete
         }
         public List<CargoDetail> TGetAll()
         {
-            return _cargoDetailDal.GetAll();
+           return _cargoDetailDal.GetAll();
         }
         public CargoDetail TGetById(int id)
         {

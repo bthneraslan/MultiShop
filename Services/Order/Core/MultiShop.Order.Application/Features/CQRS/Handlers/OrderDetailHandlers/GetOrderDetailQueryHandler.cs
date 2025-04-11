@@ -1,6 +1,4 @@
-﻿using MultiShop.Order.Application.Features.CQRS.Commands.OrderDetailCommands;
-using MultiShop.Order.Application.Features.CQRS.Results.AddressResults;
-using MultiShop.Order.Application.Features.CQRS.Results.OrderDetailResults;
+﻿using MultiShop.Order.Application.Features.CQRS.Results.OrderDetailResults;
 using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Domain.Entities;
 using System;
@@ -19,7 +17,6 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
         {
             _repository = repository;
         }
-
         public async Task<List<GetOrderDetailQueryResult>> Handle()
         {
             var values = await _repository.GetAllAsync();
@@ -27,11 +24,11 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
             {
                 OrderDetailId = x.OrderDetailId,
                 ProductAmount = x.ProductAmount,
+                OrderingId = x.OrderingId,
                 ProductId = x.ProductId,
                 ProductName = x.ProductName,
                 ProductPrice = x.ProductPrice,
-                ProductTotalPrice = x.ProductTotalPrice,
-                OrderingId = x.OrderingId
+                ProductTotalPrice = x.ProductTotalPrice
             }).ToList();
         }
     }

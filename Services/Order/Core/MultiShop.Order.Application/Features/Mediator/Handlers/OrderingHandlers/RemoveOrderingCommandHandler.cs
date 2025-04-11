@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using MultiShop.Order.Application.Features.CQRS.Commands.AddressCommands;
 using MultiShop.Order.Application.Features.Mediator.Commands.OrderingCommands;
 using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Domain.Entities;
@@ -14,7 +13,6 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
     public class RemoveOrderingCommandHandler : IRequestHandler<RemoveOrderingCommand>
     {
         private readonly IRepository<Ordering> _repository;
-
         public RemoveOrderingCommandHandler(IRepository<Ordering> repository)
         {
             _repository = repository;
@@ -22,7 +20,7 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
         public async Task Handle(RemoveOrderingCommand request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.Id);
-            _repository.DeleteAsync(values);
+            await _repository.DeleteAsync(values);
         }
     }
 }

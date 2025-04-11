@@ -2,7 +2,7 @@
 
 namespace MultiShop.WebUI.ViewComponents.ProductListViewComponents
 {
-    public class _ProductListPaginationComponentPartial:ViewComponent
+    public class _ProductListPaginationComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
